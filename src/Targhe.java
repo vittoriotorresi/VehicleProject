@@ -1,3 +1,5 @@
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 //CLASSE PER TEST ARRAYLIST TARGHE
@@ -5,6 +7,7 @@ import java.util.Collections;
 public class Targhe implements Comparable<String> {
 
     ArrayList<String> targhe = new ArrayList<String>();
+    File file = new File("targhe.txt");
 
 
     public void inserisciTarga(String targa) {
@@ -26,6 +29,23 @@ public class Targhe implements Comparable<String> {
         for (String t : targhe) {
             System.out.println(t);
         }
+    }
+
+    public void salvaSuFile() {
+        try {
+            FileWriter fw = new FileWriter("targhe.txt");
+            BufferedWriter bw = new BufferedWriter(fw);
+            for (String t : targhe) {
+                bw.write(t);
+                bw.newLine();
+            }
+            bw.close();
+        } catch (IOException e) {
+            System.out.println("Errore nel salvataggio");
+            e.printStackTrace();
+        }
+
+
     }
 
     @Override
