@@ -8,7 +8,9 @@ public class Server {
 
 
     public static void main(String[] args) {
-        String targa = null;
+        String targa;
+
+
 
         if (args.length != 1) {
             System.out.println("Per favore, inserisci il numero di porta ");
@@ -31,7 +33,6 @@ public class Server {
         while (true) {
 
             try {
-
                 Targhe targhe = new Targhe();
                 InputStreamReader is = new InputStreamReader(client.getInputStream());
                 BufferedReader br = new BufferedReader(is);
@@ -53,11 +54,16 @@ public class Server {
                                 pw.flush();
                             }
                         }
+                      /*  ThreadSalvataggio ts=new ThreadSalvataggio();
+                        Thread t=new Thread(ts);
+                        t.start();
+                      */
                     }
                 } while (!targa.equalsIgnoreCase("0000000"));
 
                 if (targa.equalsIgnoreCase("0000000")) {
                     targhe.visualizzaListaTarghe();
+                    targhe.salvaSuFile();
                     System.out.println("Chiusura del programma...");
                     server.close();
                     break;
