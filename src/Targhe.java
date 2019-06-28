@@ -1,4 +1,3 @@
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,7 +23,11 @@ public class Targhe implements Comparable<String> {
     }
 
     public void visualizzaListaTarghe() {
-        System.out.println("Sono state inserite " + targhe.size() + " targhe");
+        if (targhe.size() == 1) {
+            System.out.println("E' stata inserita una targa");
+        } else {
+            System.out.println("Sono state inserite " + targhe.size() + " targhe");
+        }
         Collections.sort(targhe);
         for (String t : targhe) {
             System.out.println(t);
@@ -38,7 +41,9 @@ public class Targhe implements Comparable<String> {
             for (String t : targhe) {
                 bw.write(t);
                 bw.newLine();
+
             }
+            bw.flush();
             bw.close();
         } catch (IOException e) {
             System.out.println("Errore nel salvataggio");

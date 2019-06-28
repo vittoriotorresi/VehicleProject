@@ -30,31 +30,48 @@ public class Client {
         }
         while (true) {
             try {
-                System.out.println("Inserire la targa del veicolo: ");
+                System.out.println("-BENVENUTO NEL SERVIZIO DI GESTIONE ANAGRAFICA DEI VEICOLI-");
+                System.out.println("1-Inserimento nuovo veicolo");
+                System.out.println("2-Ricerca veicolo");
+                System.out.println("3-Eliminazione veicolo");
+                System.out.println("0-Uscita dal programma");
+                System.out.println("Scegliere un'opzione: ");
                 Scanner input = new Scanner(System.in);
-                do {
-                    targa = input.nextLine();
-                    PrintWriter pw = new PrintWriter(client.getOutputStream());
-                    pw.println(targa);
-                    pw.flush();
-                    if (!targa.equalsIgnoreCase("0000000")) {
-                        BufferedReader br = new BufferedReader(new InputStreamReader(client.getInputStream()));
-                        String conferma = br.readLine();
-                        System.out.println(conferma);
+                int scelta = Integer.parseInt(input.nextLine());
+                PrintWriter pw = new PrintWriter(client.getOutputStream());
+                pw.println(scelta);
+                pw.flush();
+                switch (scelta) {
+                    case 1: {
+                        System.out.println("Inserire il numero di targa del veicolo");
+                        System.out.println("Digitare 0000000 per tornare al menu principale");
+                        do {
+                            System.out.println("Numero di targa: ");
+                            ;
+                            targa = input.nextLine();
+                            pw.println(targa);
+                            pw.flush();
+                            if (!targa.equalsIgnoreCase("0000000")) {
+                                BufferedReader br = new BufferedReader(new InputStreamReader(client.getInputStream()));
+                                String conferma = br.readLine();
+                                System.out.println(conferma);
+                            }
+                        } while (!targa.equalsIgnoreCase("0000000"));
+                        if (targa.equalsIgnoreCase("0000000"))
+                            break;
                     }
-                } while (!targa.equalsIgnoreCase("0000000"));
-                if (targa.equalsIgnoreCase("0000000")) {
-                    System.out.println("Chiusura del programma...");
-                    client.close();
-                    exit(-1);
-                    break;
+                    case 0: {
+                        System.out.println("Chiusura del programma");
+                        client.close();
+                        exit(-1);
+                        break;
+                    }
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
         }
     }
 }
+
+
