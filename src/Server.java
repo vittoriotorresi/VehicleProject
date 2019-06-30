@@ -89,6 +89,33 @@ public class Server {
                         }
                         break;
                     }
+                    case 3: {
+                        targa = br.readLine();
+                        System.out.println("Numero di targa inserito: " + targa);
+                        PrintWriter pw = new PrintWriter(client.getOutputStream());
+                        if (targa.length() != 7) {
+                            pw.println("Numero di targa non valido");
+                            pw.flush();
+                        } else {
+                            if (targhe.verificaTarga(targa)) {
+                                targhe.eliminaTarga(targa);
+                                targhe.visualizzaListaTarghe();
+                                pw.println("Eliminazione riuscita");
+                                pw.flush();
+
+                            } else {
+                                pw.println("Numero di targa non presente, impossibile eliminare");
+                                pw.flush();
+                            }
+                        }
+                        break;
+
+                    }
+                    case 4: {
+
+
+                        break;
+                    }
 
                     case 0: {
                         System.out.println("Chiusura del programma...");

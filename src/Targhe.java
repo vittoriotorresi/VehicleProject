@@ -8,7 +8,7 @@ public class Targhe implements Comparable<String> {
     ArrayList<String> targhe = new ArrayList<String>();
     File file = new File("targhe.txt");
 
-   
+
     public void inserisciTarga(String targa) {
         targhe.add(targa);
     }
@@ -22,16 +22,13 @@ public class Targhe implements Comparable<String> {
         return false;
     }
 
-    public void visualizzaListaTarghe() {
-        if (targhe.size() == 1) {
-            System.out.println("E' stata inserita una targa");
-        } else {
-            System.out.println("Sono state inserite " + targhe.size() + " targhe");
-        }
+    public String visualizzaListaTarghe() {
+        System.out.println("Nel sistema sono presenti " + targhe.size() + " targhe");
         Collections.sort(targhe);
         for (String t : targhe) {
             System.out.println(t);
         }
+        return null;
     }
 
     public void salvaSuFile() {
@@ -51,6 +48,10 @@ public class Targhe implements Comparable<String> {
         }
 
 
+    }
+
+    public void eliminaTarga(String targa) {
+        targhe.remove(targa);
     }
 
     @Override
