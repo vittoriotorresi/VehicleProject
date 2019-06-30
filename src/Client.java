@@ -33,7 +33,6 @@ public class Client {
                 System.out.println("-BENVENUTO NEL SERVIZIO DI GESTIONE ANAGRAFICA DEI VEICOLI-");
                 System.out.println("1-Inserimento nuovo veicolo");
                 System.out.println("2-Ricerca veicolo");
-                System.out.println("3-Eliminazione veicolo");
                 System.out.println("0-Uscita dal programma");
                 System.out.println("Scegliere un'opzione: ");
                 Scanner input = new Scanner(System.in);
@@ -47,7 +46,7 @@ public class Client {
                         System.out.println("Digitare 0000000 per tornare al menu principale");
                         do {
                             System.out.println("Numero di targa: ");
-                            ;
+
                             targa = input.nextLine();
                             pw.println(targa);
                             pw.flush();
@@ -59,6 +58,16 @@ public class Client {
                         } while (!targa.equalsIgnoreCase("0000000"));
                         if (targa.equalsIgnoreCase("0000000"))
                             break;
+                    }
+                    case 2: {
+                        System.out.println("Numero di targa: ");
+                        targa = input.nextLine();
+                        pw.println(targa);
+                        pw.flush();
+                        BufferedReader br = new BufferedReader(new InputStreamReader(client.getInputStream()));
+                        String conferma = br.readLine();
+                        System.out.println(conferma);
+                        break;
                     }
                     case 0: {
                         System.out.println("Chiusura del programma");
@@ -73,5 +82,3 @@ public class Client {
         }
     }
 }
-
-

@@ -1,5 +1,7 @@
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 import static java.lang.System.exit;
 
@@ -9,7 +11,7 @@ public class Server {
 
     public static void main(String[] args) {
         String targa;
-
+        Targhe targhe = new Targhe();
 
         if (args.length != 1) {
             System.out.println("Per favore, inserisci il numero di porta ");
@@ -35,12 +37,11 @@ public class Server {
                 BufferedReader br = new BufferedReader(is);
                 int scelta = Integer.parseInt(br.readLine());
                 System.out.println("Opzione scelta: " + scelta);
-                Targhe targhe = new Targhe();
+
                 switch (scelta) {
 
                     case 1: {
                         do {
-
                             targa = br.readLine();
                             System.out.println("Numero di targa inserito: " + targa);
                             PrintWriter pw = new PrintWriter(client.getOutputStream());
@@ -69,6 +70,26 @@ public class Server {
                         }
 
                     }
+                    case 2: {
+                        targa = br.readLine();
+                        System.out.println("Numero di targa inserito: " + targa);
+                        PrintWriter pw = new PrintWriter(client.getOutputStream());
+                        if (targa.length() != 7) {
+                            pw.println("Numero di targa non valido");
+                            pw.flush();
+                        } else {
+                            if (targhe.verificaTarga(targa)) {
+                                pw.println("Numero di targa presente nel sistema");
+                                pw.flush();
+
+                            } else {
+                                pw.println("Numero di targa non presente");
+                                pw.flush();
+                            }
+                        }
+                        break;
+                    }
+
                     case 0: {
                         System.out.println("Chiusura del programma...");
                         server.close();
@@ -83,4 +104,3 @@ public class Server {
 
     }
 }
-
