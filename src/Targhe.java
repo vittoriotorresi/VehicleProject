@@ -8,11 +8,7 @@ public class Targhe implements Comparable<String> {
     ArrayList<String> targhe = new ArrayList<String>();
     File file = new File("targhe.txt");
 
-    public Targhe() {
-
-    }
-
-
+   
     public void inserisciTarga(String targa) {
         targhe.add(targa);
     }
