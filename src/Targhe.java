@@ -22,13 +22,12 @@ public class Targhe implements Comparable<String> {
         return false;
     }
 
-    public String visualizzaListaTarghe() {
+    public void visualizzaListaTarghe() {
         System.out.println("Nel sistema sono presenti " + targhe.size() + " targhe");
         Collections.sort(targhe);
         for (String t : targhe) {
             System.out.println(t);
         }
-        return null;
     }
 
     public void salvaSuFile() {
