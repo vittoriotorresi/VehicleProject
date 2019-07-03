@@ -5,7 +5,6 @@ public class Veicolo implements Comparable<Veicolo> {
     private int anno;
 
 
-
     public Veicolo(String targa, String modello, String proprietario, int anno) {
         this.setTarga(targa);
         this.setModello(modello);
@@ -15,10 +14,10 @@ public class Veicolo implements Comparable<Veicolo> {
 
     public String toString() {
         return
-                "Targa: " + getTarga() +
-                        "\nMarca e modello: " + getModello() +
+                "Targa del veicolo: " + getTarga() +
+                        "\nMarca e modello del veicolo: " + getModello() +
                         "\nProprietario: " + getProprietario() +
-                        "\nAnno: " + getAnno();
+                        "\nAnno di immatricolazione del veicolo: " + getAnno();
     }
 
     @Override

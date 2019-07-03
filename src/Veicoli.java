@@ -6,7 +6,9 @@ public class Veicoli {
     ArrayList<Veicolo> veicoli = new ArrayList<Veicolo>();
     Veicolo veicolo_trovato = null;
 
+
     public void inserisciVeicolo(Veicolo v) {
+
         veicoli.add(v);
     }
 
@@ -14,15 +16,19 @@ public class Veicoli {
         for (Veicolo v : veicoli) {
             if (v.getTarga().equalsIgnoreCase(targa)) {
                 veicolo_trovato = v;
-                System.out.println(v);
                 return true;
             }
         }
         return false;
     }
 
+    public int numeroVeicoli() {
+        return veicoli.size();
+    }
+
     public void visualizzaListaVeicoli() {
-        System.out.println("Nel sistema sono presenti " + veicoli.size() + " veicoli");
+
+        System.out.println("Nel sistema sono presenti " + numeroVeicoli() + " veicoli");
         Collections.sort(veicoli);
         for (Veicolo v : veicoli) {
             System.out.println(v);

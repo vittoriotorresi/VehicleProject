@@ -3,19 +3,17 @@ import java.net.*;
 
 
 import static java.lang.System.exit;
-import static java.lang.System.setOut;
 
 
 public class Server {
 
 
     public static void main(String[] args) {
-        String targa = null;
-        String modello = null;
-        String proprietario = null;
-        int anno = 0;
+        String targa;
+        String modello;
+        String proprietario;
+        int anno;
         Veicolo v = null;
-
         Veicoli veicoli = new Veicoli();
 
 
@@ -43,7 +41,7 @@ public class Server {
                 InputStreamReader is = new InputStreamReader(client.getInputStream());
                 BufferedReader br = new BufferedReader(is);
                 int scelta = Integer.parseInt(br.readLine());
-                System.out.println("Opzione scelta: " + scelta);
+                System.out.println("Operazione da eseguire: " + scelta);
 
                 switch (scelta) {
 
@@ -52,35 +50,35 @@ public class Server {
                         targa = br.readLine();
                         System.out.println("Numero di targa inserito: " + targa);
                         PrintWriter pw = new PrintWriter(client.getOutputStream());
-                        if (targa.length() != 7) {
-                            pw.println("Numero di targa non valido. Impossibile inserire il veicolo");
+                        if ((targa.length() != 7)) {
+                            System.out.println("Numero di targa non valido");
+                            pw.println("Numero di targa non valido");
                             pw.flush();
                             break;
                         } else {
-                            /*if (veicoli.cercaVeicolo(targa)) {
-                                pw.println("Veicolo inserito precedentemente");
+                            if (veicoli.cercaVeicolo(targa)) {
+                                pw.println("Veicolo presente nel sistema");
                                 pw.flush();
                                 break;
                             } else {
-                                pw.println("Targa corretta. Inserire gli altri campi");
-                                pw.println();
+                                pw.println("Numero di targa valido. E' possibile inserire gli altri dati");
                                 pw.flush();
-                                // v.setTarga(targa);
-                                */
-                            modello = br.readLine();
-                            System.out.println("Marca e modello: " + modello);
-                            proprietario = br.readLine();
-                            System.out.println("Cognome e nome del proprietario: " + proprietario);
-                            anno = Integer.parseInt(br.readLine());
-                            System.out.println("Anno di immatricolazione: " + anno);
-                            v = new Veicolo(targa, modello, proprietario, anno);
-                            veicoli.inserisciVeicolo(v);
-                            pw.println("Inserimento del veicolo nel sistema riuscito");
-                            pw.flush();
-                            break;
-                        }
+                                modello = br.readLine();
+                                System.out.println("Marca e modello: " + modello);
+                                proprietario = br.readLine();
+                                System.out.println("Cognome e nome del proprietario: " + proprietario);
+                                anno = Integer.parseInt(br.readLine());
+                                System.out.println("Anno di immatricolazione: " + anno);
+                                v = new Veicolo(targa, modello, proprietario, anno);
+                                veicoli.inserisciVeicolo(v);
+                                pw.println("Veicolo inserito nel sistema");
+                                pw.flush();
+                                break;
+                            }
 
+                        }
                     }
+
 
                     case 2: {
                         targa = br.readLine();
@@ -92,44 +90,50 @@ public class Server {
                             break;
                         } else {
                             if (veicoli.cercaVeicolo(targa)) {
-                                pw.println(v);
+                                System.out.println(veicoli.veicolo_trovato);
+                                pw.println(veicoli.veicolo_trovato);
                                 pw.flush();
+                                break;
                             } else {
-                                pw.println("Veicolo non trovato");
+                                pw.println("Veicolo non presente nel sistema");
                                 pw.flush();
+                                break;
+
                             }
                         }
                     }
-                    break;
+
                     case 3: {
+                        targa = br.readLine();
+                        System.out.println("Numero di targa inserito: " + targa);
+                        PrintWriter pw = new PrintWriter(client.getOutputStream());
+                        if (targa.length() != 7) {
+                            pw.println("Numero di targa non valido");
+                            pw.flush();
+                            break;
+                        } else {
+                            if (veicoli.cercaVeicolo(targa)) {
+                                veicoli.eliminaVeicolo(veicoli.veicolo_trovato);
+                                pw.println("Veicolo eliminato dal sistema");
+                                pw.flush();
+                                break;
+
+                            } else {
+                                pw.println("Veicolo non presente nel sistema");
+                                pw.flush();
+                                break;
+
+                            }
+                        }
+
+                    }
+                    case 4: {
                         veicoli.visualizzaListaVeicoli();
                         PrintWriter pw = new PrintWriter(client.getOutputStream());
                         pw.println(v);
                         pw.flush();
                         break;
                     }
-                       /*
-                       targa = br.readLine();
-                       System.out.println("Numero di targa inserito: " + targa);
-                       PrintWriter pw = new PrintWriter(client.getOutputStream());
-                       if (targa.length() != 7) {
-                           pw.println("Numero di targa non valido");
-                           pw.flush();
-                       } else {
-                           if (veicoli.cercaVeicolo(targa)) {
-                               veicoli.eliminaVeicolo(v);
-                               veicoli.visualizzaListaVeicoli();
-                               pw.println("Eliminazione riuscita");
-                               pw.flush();
-
-                           } else {
-                               pw.println("Numero di targa non presente, impossibile eliminare");
-                               pw.flush();
-                           }
-                       }
-                       break;
-
-                   }*/
 
                     case 0: {
                         System.out.println("Chiusura del programma...");
@@ -137,7 +141,13 @@ public class Server {
                         exit(-1);
                         break;
                     }
+                    default: {
+                        System.out.println("Scelta non valida. Riprovare");
+                    }
+
+
                 }
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
