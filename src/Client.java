@@ -14,7 +14,6 @@ public class Client {
         String proprietario;
         int anno;
 
-
         if (args.length != 2) {
             System.out.println("Per favore, inserire l'indirizzo e il numero di porta");
             exit(-1);
@@ -79,7 +78,7 @@ public class Client {
                             pw.flush();
                             String confermaIns = br.readLine();
                             System.out.println(confermaIns);
-                            try{
+                            try {
                                 Thread.sleep(5000);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
@@ -115,7 +114,7 @@ public class Client {
                         pw.flush();
                         String conferma = br.readLine();
                         System.out.println(conferma);
-                        try{
+                        try {
                             Thread.sleep(5000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();

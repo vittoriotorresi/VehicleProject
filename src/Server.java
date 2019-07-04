@@ -77,9 +77,9 @@ public class Server {
                                 veicoli.inserisciVeicolo(v);
                                 pw.println("Veicolo inserito nel sistema");
                                 pw.flush();
-                               try {
+                                try {
                                     Thread.sleep(5000);
-                               } catch (InterruptedException e) {
+                                } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
                                 break;
