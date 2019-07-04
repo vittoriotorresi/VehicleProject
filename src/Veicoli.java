@@ -1,6 +1,4 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 
@@ -30,10 +28,13 @@ public class Veicoli {
 
     }
 
-    public void visualizzaListaVeicoli() {
-
-        System.out.println("Nel sistema sono presenti " + numeroVeicoli() + " veicoli");
+    public void ordinaListaVeicoli() {
         Collections.sort(veicoli);
+    }
+
+    public void visualizzaListaVeicoli() {
+        System.out.println("Nel sistema sono presenti " + numeroVeicoli() + " veicoli");
+        ordinaListaVeicoli();
         for (Veicolo v : veicoli) {
             System.out.println(v);
 
@@ -47,6 +48,7 @@ public class Veicoli {
 
     public synchronized void salvaSuFile() {
         try {
+            ordinaListaVeicoli();
             FileWriter fw = new FileWriter("ListaVeicoli.txt");
             BufferedWriter bw = new BufferedWriter(fw);
             for (Veicolo v : veicoli) {
@@ -57,10 +59,11 @@ public class Veicoli {
             bw.flush();
             bw.close();
         } catch (IOException e) {
-            System.out.println("Errore nel salvataggio");
+            System.out.println("Errore durante il salvataggio");
             e.printStackTrace();
         }
-
     }
 }
+
+
 

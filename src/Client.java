@@ -42,7 +42,7 @@ public class Client {
                 System.out.println("1-Inserisci nuovo veicolo");
                 System.out.println("2-Ricerca veicolo");
                 System.out.println("3-Elimina veicolo");
-                System.out.println("4-Visualizza veicoli");
+                System.out.println("4-Visualizza veicoli sul server");
                 System.out.println("0-Uscita dal programma");
                 System.out.println("Scegliere un'opzione: ");
                 Scanner input = new Scanner(System.in);
@@ -60,8 +60,9 @@ public class Client {
                         pw.flush();
                         String confermaTarga = br.readLine();
                         System.out.println(confermaTarga);
-                        if (confermaTarga.equalsIgnoreCase("Numero di targa non valido")
-                                || confermaTarga.equalsIgnoreCase("Veicolo presente nel sistema"))
+                        if (confermaTarga.equalsIgnoreCase("Numero di targa non valido. " +
+                                "Impossibile inserire il veicolo nel sistema")
+                                || confermaTarga.equalsIgnoreCase("Veicolo precedentemente inserito nel sistema"))
                             break;
                         else {
                             System.out.println("Marca e modello del veicolo: ");
@@ -72,12 +73,17 @@ public class Client {
                             proprietario = input.nextLine();
                             pw.println(proprietario);
                             pw.flush();
-                            System.out.println("Anno di immatricolazione: ");
+                            System.out.println("Anno di immatricolazione del veicolo: ");
                             anno = input.nextInt();
                             pw.println(anno);
                             pw.flush();
                             String confermaIns = br.readLine();
                             System.out.println(confermaIns);
+                            try{
+                                Thread.sleep(5000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                             break;
                         }
                     }
@@ -94,7 +100,8 @@ public class Client {
                             String conferma = br.readLine();
                             System.out.println(conferma);
                             if (conferma.equalsIgnoreCase("Veicolo non presente nel sistema")
-                                    || conferma.equalsIgnoreCase("Numero di targa non valido"))
+                                    || conferma.equalsIgnoreCase("Numero di targa non valido. Impossibile effettuare " +
+                                    "la ricerca"))
                                 break;
                         }
 
@@ -108,16 +115,17 @@ public class Client {
                         pw.flush();
                         String conferma = br.readLine();
                         System.out.println(conferma);
+                        try{
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         break;
 
                     }
 
-                    case 4: {//da sistemare
-                        br = new BufferedReader(new InputStreamReader(client.getInputStream()));
-                        for (int i = 0; i < 8; i++) {
-                            String conferma = br.readLine();
-                            System.out.println(conferma);
-                        }
+                    case 4: {
+                        System.out.println("Visualizzazione sul server...");
                         break;
                     }
 

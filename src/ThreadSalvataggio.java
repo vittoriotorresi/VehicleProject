@@ -1,4 +1,5 @@
 public class ThreadSalvataggio implements Runnable {
+
     public ThreadSalvataggio(Veicoli veicoli) {
         this.veicoli = veicoli;
     }

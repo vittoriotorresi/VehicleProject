@@ -55,12 +55,13 @@ public class Server {
                         System.out.println("Numero di targa inserito: " + targa);
                         PrintWriter pw = new PrintWriter(client.getOutputStream());
                         if ((targa.length() != 7)) {
-                            pw.println("Numero di targa non valido");
+                            pw.println("Numero di targa non valido. Impossibile inserire " +
+                                    "il veicolo nel sistema");
                             pw.flush();
                             break;
                         } else {
                             if (veicoli.cercaVeicolo(targa)) {
-                                pw.println("Veicolo presente nel sistema");
+                                pw.println("Veicolo precedentemente inserito nel sistema");
                                 pw.flush();
                                 break;
                             } else {
@@ -76,22 +77,28 @@ public class Server {
                                 veicoli.inserisciVeicolo(v);
                                 pw.println("Veicolo inserito nel sistema");
                                 pw.flush();
+                               try {
+                                    Thread.sleep(5000);
+                               } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
                                 break;
                             }
 
                         }
                     }
 
-
                     case 2: {
                         targa = br.readLine();
                         System.out.println("Numero di targa inserito: " + targa);
                         PrintWriter pw = new PrintWriter(client.getOutputStream());
                         if (targa.length() != 7) {
-                            pw.println("Numero di targa non valido");
+                            pw.println("Numero di targa non valido. Impossibile " +
+                                    "effettuare la ricerca");
                             pw.flush();
                             break;
                         } else {
+
                             if (veicoli.cercaVeicolo(targa)) {
                                 System.out.println(veicoli.veicolo_trovato);
                                 pw.println(veicoli.veicolo_trovato);
@@ -111,7 +118,8 @@ public class Server {
                         System.out.println("Numero di targa inserito: " + targa);
                         PrintWriter pw = new PrintWriter(client.getOutputStream());
                         if (targa.length() != 7) {
-                            pw.println("Numero di targa non valido");
+                            pw.println("Numero di targa non valido. Impossibile eliminare" +
+                                    " il veicolo dal sistema");
                             pw.flush();
                             break;
                         } else {
@@ -119,10 +127,15 @@ public class Server {
                                 veicoli.eliminaVeicolo(veicoli.veicolo_trovato);
                                 pw.println("Veicolo eliminato dal sistema");
                                 pw.flush();
+                                try {
+                                    Thread.sleep(5000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
                                 break;
 
                             } else {
-                                pw.println("Veicolo non presente nel sistema");
+                                pw.println("Veicolo non presente nel sistema. Impossibile eliminare");
                                 pw.flush();
                                 break;
 
@@ -132,12 +145,6 @@ public class Server {
                     }
                     case 4: {
                         veicoli.visualizzaListaVeicoli();
-                        // veicoli.salvaSuFile();
-                        PrintWriter pw = new PrintWriter(client.getOutputStream());
-                        for (int i = 0; i < veicoli.numeroVeicoli(); i++) {
-                            pw.println(v);
-                            pw.flush();
-                        }
                         break;
                     }
 
