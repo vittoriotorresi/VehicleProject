@@ -18,7 +18,7 @@ public class Server {
 
 
         if (args.length != 1) {
-            System.out.println("Per favore, inserisci il numero di porta ");
+            System.out.println("Per favore, inserire il numero di porta ");
             exit(-1);
         }
         int port = Integer.parseInt(args[0]);
@@ -37,11 +37,15 @@ public class Server {
         }
         while (true) {
             try {
+                ThreadSalvataggio ts = new ThreadSalvataggio(veicoli);
+                Thread t = new Thread(ts);
+                t.start();
 
                 InputStreamReader is = new InputStreamReader(client.getInputStream());
                 BufferedReader br = new BufferedReader(is);
                 int scelta = Integer.parseInt(br.readLine());
                 System.out.println("Operazione da eseguire: " + scelta);
+
 
                 switch (scelta) {
 
@@ -51,7 +55,6 @@ public class Server {
                         System.out.println("Numero di targa inserito: " + targa);
                         PrintWriter pw = new PrintWriter(client.getOutputStream());
                         if ((targa.length() != 7)) {
-                            System.out.println("Numero di targa non valido");
                             pw.println("Numero di targa non valido");
                             pw.flush();
                             break;
@@ -129,9 +132,12 @@ public class Server {
                     }
                     case 4: {
                         veicoli.visualizzaListaVeicoli();
+                        // veicoli.salvaSuFile();
                         PrintWriter pw = new PrintWriter(client.getOutputStream());
-                        pw.println(v);
-                        pw.flush();
+                        for (int i = 0; i < veicoli.numeroVeicoli(); i++) {
+                            pw.println(v);
+                            pw.flush();
+                        }
                         break;
                     }
 
@@ -141,10 +147,6 @@ public class Server {
                         exit(-1);
                         break;
                     }
-                    default: {
-                        System.out.println("Scelta non valida. Riprovare");
-                    }
-
 
                 }
 

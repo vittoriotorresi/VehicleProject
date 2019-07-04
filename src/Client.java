@@ -93,7 +93,8 @@ public class Client {
                         for (int i = 0; i < 4; i++) {
                             String conferma = br.readLine();
                             System.out.println(conferma);
-                            if (conferma.equalsIgnoreCase("Veicolo non presente nel sistema"))
+                            if (conferma.equalsIgnoreCase("Veicolo non presente nel sistema")
+                                    || conferma.equalsIgnoreCase("Numero di targa non valido"))
                                 break;
                         }
 
@@ -111,10 +112,12 @@ public class Client {
 
                     }
 
-                    case 4: {
+                    case 4: {//da sistemare
                         br = new BufferedReader(new InputStreamReader(client.getInputStream()));
-                        String conferma = br.readLine();
-                        System.out.println(conferma);
+                        for (int i = 0; i < 8; i++) {
+                            String conferma = br.readLine();
+                            System.out.println(conferma);
+                        }
                         break;
                     }
 

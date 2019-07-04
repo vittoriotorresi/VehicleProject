@@ -1,5 +1,8 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
-import java.util.Collections;
+
 
 public class Veicoli {
 
@@ -24,6 +27,7 @@ public class Veicoli {
 
     public int numeroVeicoli() {
         return veicoli.size();
+
     }
 
     public void visualizzaListaVeicoli() {
@@ -32,12 +36,31 @@ public class Veicoli {
         Collections.sort(veicoli);
         for (Veicolo v : veicoli) {
             System.out.println(v);
+
         }
     }
 
 
     public void eliminaVeicolo(Veicolo v) {
         veicoli.remove(v);
+    }
+
+    public synchronized void salvaSuFile() {
+        try {
+            FileWriter fw = new FileWriter("ListaVeicoli.txt");
+            BufferedWriter bw = new BufferedWriter(fw);
+            for (Veicolo v : veicoli) {
+                bw.write(v.toString());
+                bw.newLine();
+
+            }
+            bw.flush();
+            bw.close();
+        } catch (IOException e) {
+            System.out.println("Errore nel salvataggio");
+            e.printStackTrace();
+        }
+
     }
 }
 
