@@ -78,11 +78,11 @@ public class Client {
                             pw.flush();
                             String confermaIns = br.readLine();
                             System.out.println(confermaIns);
-                            try {
+                          /*  try {
                                 Thread.sleep(5000);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
-                            }
+                            }*/
                             break;
                         }
                     }
@@ -114,11 +114,7 @@ public class Client {
                         pw.flush();
                         String conferma = br.readLine();
                         System.out.println(conferma);
-                        try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+
                         break;
 
                     }

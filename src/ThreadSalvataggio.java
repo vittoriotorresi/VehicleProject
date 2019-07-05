@@ -7,7 +7,14 @@ public class ThreadSalvataggio implements Runnable {
     Veicoli veicoli;
 
     public void run() {
-        veicoli.salvaSuFile();
+
+        try {
+            Thread.sleep(10000);
+            veicoli.salvaSuFile();
+        } catch (InterruptedException e) {
+            System.out.println("Thread interrotto");
+            e.printStackTrace();
+        }
 
     }
 }

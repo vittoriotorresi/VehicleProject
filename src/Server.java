@@ -77,11 +77,7 @@ public class Server {
                                 veicoli.inserisciVeicolo(v);
                                 pw.println("Veicolo inserito nel sistema");
                                 pw.flush();
-                                try {
-                                    Thread.sleep(5000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
+
                                 break;
                             }
 
@@ -127,11 +123,11 @@ public class Server {
                                 veicoli.eliminaVeicolo(veicoli.veicolo_trovato);
                                 pw.println("Veicolo eliminato dal sistema");
                                 pw.flush();
-                                try {
+                               /* try {
                                     Thread.sleep(5000);
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
-                                }
+                                }*/
                                 break;
 
                             } else {
