@@ -123,11 +123,7 @@ public class Server {
                                 veicoli.eliminaVeicolo(veicoli.veicolo_trovato);
                                 pw.println("Veicolo eliminato dal sistema");
                                 pw.flush();
-                               /* try {
-                                    Thread.sleep(5000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }*/
+
                                 break;
 
                             } else {
@@ -141,6 +137,7 @@ public class Server {
                     }
                     case 4: {
                         veicoli.visualizzaListaVeicoli();
+
                         break;
                     }
 
