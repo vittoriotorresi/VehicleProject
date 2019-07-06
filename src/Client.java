@@ -14,6 +14,7 @@ public class Client {
         String proprietario;
         int anno;
 
+
         if (args.length != 2) {
             System.out.println("Per favore, inserire l'indirizzo e il numero di porta");
             exit(-1);
@@ -57,11 +58,11 @@ public class Client {
                         targa = input.nextLine();
                         pw.println(targa);
                         pw.flush();
-                        String confermaTarga = br.readLine();
-                        System.out.println(confermaTarga);
-                        if (confermaTarga.equalsIgnoreCase("Numero di targa non valido. " +
+                        String conferma_targa = br.readLine();
+                        System.out.println(conferma_targa);
+                        if (conferma_targa.equalsIgnoreCase("Numero di targa non valido. " +
                                 "Impossibile inserire il veicolo nel sistema")
-                                || confermaTarga.equalsIgnoreCase("Veicolo precedentemente inserito nel sistema"))
+                                || conferma_targa.equalsIgnoreCase("Veicolo precedentemente inserito nel sistema"))
                             break;
                         else {
                             System.out.println("Marca e modello del veicolo: ");
@@ -76,13 +77,9 @@ public class Client {
                             anno = input.nextInt();
                             pw.println(anno);
                             pw.flush();
-                            String confermaIns = br.readLine();
-                            System.out.println(confermaIns);
-                          /*  try {
-                                Thread.sleep(5000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }*/
+                            String conferma_inserimento = br.readLine();
+                            System.out.println(conferma_inserimento);
+
                             break;
                         }
                     }
