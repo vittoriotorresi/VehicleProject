@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.util.Scanner;
 
 
 import static java.lang.System.exit;
@@ -13,7 +14,7 @@ public class Server {
         String modello;
         String proprietario;
         int anno;
-        Veicolo v = null;
+        Veicolo v;
         Veicoli veicoli = new Veicoli();
 
 

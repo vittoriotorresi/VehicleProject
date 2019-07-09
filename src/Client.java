@@ -14,7 +14,7 @@ public class Client {
         String modello;
         String proprietario;
         int anno;
-        Veicoli veicoli = null;
+
 
 
         if (args.length != 2) {
@@ -38,16 +38,12 @@ public class Client {
         }
         while (true) {
             try {
-                ThreadSalvataggio ts = new ThreadSalvataggio(veicoli);
-                Thread t = new Thread(ts);
-                t.start();
-
 
                 System.out.println("-BENVENUTO NEL SISTEMA PER LA GESTIONE ANAGRAFICA DEI VEICOLI-");
                 System.out.println("1-Inserisci nuovo veicolo");
                 System.out.println("2-Ricerca veicolo");
                 System.out.println("3-Elimina veicolo");
-                System.out.println("4-Visualizza veicoli sul server");
+                System.out.println("4-Visualizza veicoli");
                 System.out.println("0-Uscita dal programma");
                 System.out.println("Scegliere un'opzione: ");
                 Scanner input = new Scanner(System.in);
@@ -123,8 +119,19 @@ public class Client {
 
                     case 4: {
                         System.out.println("Visualizzazione sul server...");
+                        File f = new File("ListaVeicoli.txt");
+                        Scanner fsc = new Scanner(f);
+                        FileWriter fw = new FileWriter("ListaVeicoliClient.txt");
+                        BufferedWriter bw = new BufferedWriter(fw);
+                        while (fsc.hasNextLine()) {
+                            bw.write(fsc.nextLine());
+                            bw.newLine();
+                        }
+                        bw.flush();
+                        bw.close();
 
                         break;
+
                     }
 
 
