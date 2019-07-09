@@ -119,17 +119,6 @@ public class Client {
 
                     case 4: {
                         System.out.println("Visualizzazione sul server...");
-                        File f = new File("ListaVeicoli.txt");
-                        Scanner fsc = new Scanner(f);
-                        FileWriter fw = new FileWriter("ListaVeicoliClient.txt");
-                        BufferedWriter bw = new BufferedWriter(fw);
-                        while (fsc.hasNextLine()) {
-                            bw.write(fsc.nextLine());
-                            bw.newLine();
-                        }
-                        bw.flush();
-                        bw.close();
-
                         break;
 
                     }

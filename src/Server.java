@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
+import java.util.zip.InflaterOutputStream;
 
 
 import static java.lang.System.exit;
@@ -138,9 +139,10 @@ public class Server {
                     }
                     case 4: {
                         veicoli.visualizzaListaVeicoli();
+
+
                         break;
                     }
-
                     case 0: {
                         System.out.println("Chiusura del programma...");
                         server.close();
