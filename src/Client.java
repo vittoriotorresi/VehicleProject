@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.Socket;
+
 import java.util.Scanner;
 
 
@@ -13,6 +14,7 @@ public class Client {
         String modello;
         String proprietario;
         int anno;
+        Veicoli veicoli = null;
 
 
         if (args.length != 2) {
@@ -36,6 +38,9 @@ public class Client {
         }
         while (true) {
             try {
+                ThreadSalvataggio ts = new ThreadSalvataggio(veicoli);
+                Thread t = new Thread(ts);
+                t.start();
 
 
                 System.out.println("-BENVENUTO NEL SISTEMA PER LA GESTIONE ANAGRAFICA DEI VEICOLI-");
@@ -118,6 +123,7 @@ public class Client {
 
                     case 4: {
                         System.out.println("Visualizzazione sul server...");
+
                         break;
                     }
 

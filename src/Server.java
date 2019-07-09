@@ -137,7 +137,6 @@ public class Server {
                     }
                     case 4: {
                         veicoli.visualizzaListaVeicoli();
-
                         break;
                     }
 
